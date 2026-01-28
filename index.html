@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AYG Labs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AYG Labs</title>
   <style>
+    /* Temel Stil Ayarları */
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
@@ -13,53 +14,109 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      overflow: hidden; /* Taşmaları önlemek için */
     }
 
+    /* Giriş Animasyonu */
     .container {
       text-align: center;
       max-width: 720px;
       padding: 40px;
+      animation: fadeIn 1.2s ease-out forwards;
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Üst Etiket */
+    .tag {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 25px;
+      background: rgba(56, 189, 248, 0.05);
+      letter-spacing: 1px;
+    }
+
+    /* Başlık Alanı */
     h1 {
-      font-size: 3rem;
-      letter-spacing: 0.5px;
-      margin-bottom: 10px;
+      font-size: clamp(2.5rem, 8vw, 3.5rem); /* Dinamik yazı boyutu */
+      letter-spacing: -1px;
+      margin-bottom: 15px;
     }
 
     h1 span {
       color: #38bdf8;
+      transition: 0.3s;
+      cursor: default;
     }
 
+    h1 span:hover {
+      text-shadow: 0 0 25px #38bdf8;
+    }
+
+    /* Metinler */
     p {
       font-size: 1.1rem;
-      line-height: 1.6;
-      color: #cbd5f5;
-      margin-bottom: 30px;
-    }
-
-    .tag {
-      display: inline-block;
-      padding: 8px 16px;
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 999px;
-      font-size: 0.9rem;
-      color: #94a3b8;
+      line-height: 1.7;
+      color: #cbd5e1;
       margin-bottom: 25px;
     }
 
+    strong {
+      color: #f1f5f9;
+      font-weight: 600;
+    }
+
+    /* Link Butonları */
+    .links {
+      margin-top: 35px;
+    }
+
+    .btn {
+      text-decoration: none;
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      margin: 0 10px;
+    }
+
+    .btn:hover {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: #38bdf8;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+    }
+
+    /* Alt Bilgi */
     footer {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: #64748b;
-      margin-top: 40px;
+      margin-top: 50px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 20px;
+    }
+
+    /* Mobil Düzenleme */
+    @media (max-width: 480px) {
+      .container { padding: 20px; }
+      .btn { display: block; margin: 10px auto; }
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <div class="tag">Research · Algorithms · Systems</div>
+    <div class="tag">RESEARCH · ALGORITHMS · SYSTEMS</div>
 
     <h1><span>AYG</span> Labs</h1>
 
@@ -74,8 +131,13 @@
       Shaping what comes next.
     </p>
 
+    <div class="links">
+      <a href="https://github.com/kullaniciadin" class="btn">View GitHub</a>
+      <a href="mailto:email@adresin.com" class="btn">Get in Touch</a>
+    </div>
+
     <footer>
-      © 2026 AYG Labs · All rights reserved
+      © 2026 AYG Labs · Built with precision
     </footer>
   </div>
 
