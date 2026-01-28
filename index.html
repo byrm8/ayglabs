@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AYG LABS | Research & Innovation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #003366; /* Klasik üniversite laciverti */
+            --accent-red: #990000;
+            --text-dark: #1a1a1a;
+            --bg-light: #ffffff;
+            --nav-bg: #f8f9fa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--bg-light); line-height: 1.7; }
+
+        /* Üst Header - Geniş ve Prestijli */
+        header {
+            width: 100%;
+            border-bottom: 3px solid var(--primary-blue);
+            padding: 30px 5%;
+            background: white;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        /* Navigasyon - Sıra sıra dizilmiş sekmeler */
+        nav {
+            background: var(--nav-bg);
+            padding: 0 5%;
+            border-bottom: 1px solid #e1e4e8;
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            padding: 15px 25px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: 0.2s;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover {
+            background: #e9ecef;
+            color: var(--primary-blue);
+        }
+
+        nav a.active {
+            border-bottom: 3px solid var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        /* Ana İçerik Alanı */
+        main {
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* Sol geniş, sağ dar sütun */
+            gap: 60px;
+        }
+
+        .hero-section h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 3rem;
+            margin-bottom: 25px;
+            color: var(--primary-blue);
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        /* Haberler/Yazılar Kısmı */
+        .section-label {
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--accent-red);
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .news-item {
+            margin-bottom: 35px;
+        }
+
+        .news-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .news-item a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .news-item a:hover { text-decoration: underline; }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 5%;
+            margin-top: 100px;
+        }
+
+        /* Mobil Uyum */
+        @media (max-width: 768px) {
+            main { grid-template-columns: 1fr; }
+            .nav-content { overflow-x: auto; }
+            .logo { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">AYG LABS</a>
+            <div style="font-size: 0.8rem; text-align: right;">
+                EST. 2024<br>
+                <span style="color: var(--accent-red)">RESEARCH & LOGIC</span>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-content">
+            <a href="index.html" class="active">Home</a>
+            <a href="journal.html">Journal</a>
+            <a href="works.html">Works</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="hero-section">
+            <h1>Advancing Computational Thinking</h1>
+            <p>Welcome to AYG Labs. We are dedicated to the systematic exploration of algorithms and the documentation of digital evolution.</p>
+            
+            <div class="section-label">Recent Journal Entries</div>
+            
+            <div class="news-item">
+                <h3><a href="journal.html">The Future of Decoupled Systems</a></h3>
+                <p>An in-depth look at how modular architecture is changing the way we build long-term software...</p>
+            </div>
+
+            <div class="news-item">
+                <h3><a href="journal.html">Algorithm Efficiency in Modern Hardware</a></h3>
+                <p>Testing the limits of sorting algorithms on the latest ARM-based architectures...</p>
+            </div>
+        </div>
+
+        <aside>
+            <div class="section-label">Quick Links</div>
+            <ul style="list-style: none; line-height: 2.5;">
+                <li><a href="#" style="color: var(--primary-blue);">→ Academic Publications</a></li>
+                <li><a href="#" style="color: var(--primary-blue);">→ Open Source Repositories</a></li>
+                <li><a href="#" style="color: var(--primary-blue);">→ Annual Report 2025</a></li>
+            </ul>
+        </aside>
+    </main>
+
+    <footer>
+        <div style="max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between;">
+            <div>© 2026 AYG LABS</div>
+            <div>Privacy Policy | Terms of Service</div>
+        </div>
+    </footer>
+
+</body>
+</html>
