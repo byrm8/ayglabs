@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AYG LABS | Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --accent: #e63946; --bg: #0d0d0d; --border: rgba(255, 255, 255, 0.08); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: #fff; overflow-x: hidden; }
+
+        /* HEADER & NAV SYSTEM */
+        header {
+            width: 100%; height: 75px; padding: 0 5%; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 2px solid var(--accent); background: var(--bg); position: sticky; top: 0; z-index: 1200;
+        }
+        .logo { font-weight: 900; font-size: 1.4rem; text-decoration: none; color: #fff; }
+        .logo span { color: var(--accent); }
+
+        .nav-wrapper { display: flex; align-items: center; gap: 30px; }
+        nav { display: flex; gap: 20px; align-items: center; }
+        nav a { text-decoration: none; color: #fff; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; opacity: 0.6; transition: 0.3s; }
+        nav a.active { opacity: 1; color: var(--accent); }
+
+        .lang-switcher { display: flex; gap: 10px; border-left: 1px solid var(--border); padding-left: 20px; }
+        .lang-btn { background: none; border: none; color: #fff; cursor: pointer; font-weight: 900; font-size: 0.8rem; opacity: 0.3; transition: 0.3s; }
+        .lang-btn.active { opacity: 1; color: var(--accent); }
+
+        @media (max-width: 850px) {
+            .menu-toggle { display: flex; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1300; }
+            .menu-toggle span { width: 28px; height: 2px; background: #fff; transition: 0.3s; }
+            .nav-wrapper {
+                position: fixed; top: -100%; left: 0; width: 100%; height: 60vh; 
+                background: #111; flex-direction: column; justify-content: center; gap: 30px; 
+                transition: 0.6s cubic-bezier(0.85, 0, 0.15, 1); border-bottom: 4px solid var(--accent); z-index: 1100; visibility: hidden;
+            }
+            .nav-wrapper.active { top: 75px; visibility: visible; }
+            nav { flex-direction: column; }
+            nav a { font-size: 1.5rem; }
+            .lang-switcher { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 20px; }
+            .lang-btn { font-size: 1.2rem; }
+        }
+
+        .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); visibility: hidden; transition: 0.4s; z-index: 1000; backdrop-filter: blur(8px); }
+        .overlay.active { visibility: visible; }
+
+        /* HERO & CONTENT */
+        .hero { padding: 100px 5%; border-bottom: 1px solid var(--border); }
+        h1 { font-size: clamp(2.5rem, 10vw, 5rem); font-weight: 900; line-height: 0.9; margin-bottom: 25px; text-transform: uppercase; }
+        .hero p { font-size: 1.25rem; color: #888; max-width: 800px; margin-bottom: 35px; }
+
+        .main-grid { display: grid; grid-template-columns: 1fr 1fr; }
+        .grid-block { padding: 60px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); text-decoration: none; color: #fff; transition: 0.3s; }
+        .grid-block:hover { background: #111; }
+        .grid-block h2 { font-size: 2.2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 10px; }
+
+        @media (max-width: 850px) { .main-grid { grid-template-columns: 1fr; } .grid-block { padding: 40px 5%; border-right: none; } }
+
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">AYG<span>LABS</span></a>
+        <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+        <div class="nav-wrapper" id="nav-wrapper">
+            <nav>
+                <a href="index.html" class="active">Home</a>
+                <a href="journal.html">Journal</a>
+                <a href="projects.html">Projects</a>
+                <a href="about.html">About</a>
+            </nav>
+            <div class="lang-switcher">
+                <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" id="btn-tr" onclick="setLang('tr')">TR</button>
+            </div>
+        </div>
+    </header>
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+    <main>
+        <section class="hero">
+            <div id="en-hero" class="lang-content active">
+                <h1>Intellectual Evolution.</h1>
+                <p>Documentation of computer science passion, C language mastery, and the road to IOI Gold Medal.</p>
+                <a href="about.html" style="color:var(--accent); text-decoration:none; font-weight:900;">LEARN MORE →</a>
+            </div>
+            <div id="tr-hero" class="lang-content">
+                <h1>Entelektüel Evrim.</h1>
+                <p>Bilgisayar bilimi tutkusu, C dili uzmanlığı ve IOI Altın Madalyasına giden yolun dökümantasyonu.</p>
+                <a href="about.html" style="color:var(--accent); text-decoration:none; font-weight:900;">DAHA FAZLA →</a>
+            </div>
+        </section>
+
+        <section class="main-grid">
+            <a href="journal.html" class="grid-block">
+                <h2 class="en-grid">Journal</h2><h2 class="tr-grid lang-content">Günlük</h2>
+                <p class="en-grid">Daily logs of progress.</p><p class="tr-grid lang-content">İlerleme kayıtları.</p>
+            </a>
+            <a href="projects.html" class="grid-block" style="border-left: 4px solid var(--accent);">
+                <h2 class="en-grid">Projects</h2><h2 class="tr-grid lang-content">Projeler</h2>
+                <p class="en-grid">Technical works.</p><p class="tr-grid lang-content">Teknik çalışmalar.</p>
+            </a>
+        </section>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('nav-wrapper').classList.toggle('active');
+            document.querySelector('.menu-toggle').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+        }
+
+        function setLang(lang) {
+            document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.' + lang + '-hero, .' + lang + '-grid').forEach(el => el.classList.add('active'));
+            document.getElementById(lang + '-hero').classList.add('active');
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
+        }
+    </script>
+</body>
+</html>
