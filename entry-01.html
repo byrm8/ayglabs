@@ -4,106 +4,137 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entry #01 | AYG LABS</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --accent: #e63946;
-            --bg: #0d0d0d;
-            --border: rgba(255, 255, 255, 0.08);
-        }
-
+        :root { --accent: #e63946; --bg: #0d0d0d; --border: rgba(255, 255, 255, 0.08); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--bg); 
-            color: #fff; 
-            line-height: 1.7;
-            letter-spacing: -0.01em;
-        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: #fff; line-height: 1.7; overflow-x: hidden; }
 
+        /* HEADER & NAV (Standardize edilmiş yapı) */
         header {
-            width: 100%; padding: 25px 5%;
-            display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 2px solid var(--accent); background: var(--bg);
-            position: sticky; top: 0; z-index: 100;
+            width: 100%; height: 75px; padding: 0 5%; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 2px solid var(--accent); background: var(--bg); position: sticky; top: 0; z-index: 1200;
         }
-        .logo { font-weight: 900; font-size: 1.6rem; text-decoration: none; color: #fff; }
+        .logo { font-weight: 900; font-size: 1.4rem; text-decoration: none; color: #fff; }
         .logo span { color: var(--accent); }
-        
-        /* Dil Seçici */
-        .lang-switch { display: flex; gap: 10px; align-items: center; }
-        .lang-btn { 
-            background: none; border: none; color: #fff; opacity: 0.4; 
-            font-weight: 900; cursor: pointer; font-size: 0.85rem; transition: 0.3s;
-        }
+        .nav-wrapper { display: flex; align-items: center; gap: 30px; }
+        nav { display: flex; gap: 20px; align-items: center; }
+        nav a { text-decoration: none; color: #fff; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; opacity: 0.6; transition: 0.3s; }
+        nav a.active { opacity: 1; color: var(--accent); }
+        .lang-switcher { display: flex; gap: 10px; border-left: 1px solid var(--border); padding-left: 20px; }
+        .lang-btn { background: none; border: none; color: #fff; cursor: pointer; font-weight: 900; opacity: 0.3; transition: 0.3s; }
         .lang-btn.active { opacity: 1; color: var(--accent); }
 
-        article { max-width: 900px; margin: 0 auto; padding: 80px 5%; }
-        .meta { color: var(--accent); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 20px; display: block; }
-        h1 { font-size: 4.5rem; font-weight: 900; line-height: 1; margin-bottom: 60px; text-transform: uppercase; }
+        @media (max-width: 850px) {
+            .menu-toggle { display: flex; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1300; }
+            .menu-toggle span { width: 28px; height: 2px; background: #fff; }
+            .nav-wrapper {
+                position: fixed; top: -100%; left: 0; width: 100%; height: 60vh; 
+                background: #111; flex-direction: column; justify-content: center; 
+                gap: 30px; transition: 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+                border-bottom: 4px solid var(--accent); z-index: 1100; visibility: hidden;
+            }
+            .nav-wrapper.active { top: 75px; visibility: visible; }
+            nav { flex-direction: column; }
+            nav a { font-size: 1.4rem; }
+            .lang-switcher { border-left: none; padding-top: 20px; border-top: 1px solid var(--border); }
+        }
+        .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); visibility: hidden; transition: 0.4s; z-index: 1000; backdrop-filter: blur(8px); }
+        .overlay.active { visibility: visible; }
 
-        /* Metin Katmanları */
-        .lang-content { display: none; font-size: 1.3rem; color: #ccc; }
+        /* ARTICLE CONTENT */
+        .article-container { max-width: 800px; margin: 0 auto; padding: 80px 5%; }
+        .meta-data { color: var(--accent); font-weight: 700; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 20px; display: block; }
+        h1 { font-size: clamp(2rem, 8vw, 3.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 40px; text-transform: uppercase; }
+        
+        p { margin-bottom: 25px; color: #ccc; font-size: 1.1rem; }
+        
+        /* Brütalist Kod Bloğu */
+        code-block {
+            display: block; background: #111; border: 1px solid var(--border); padding: 25px;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: #fff;
+            margin: 40px 0; position: relative; overflow-x: auto;
+        }
+        code-block::before { content: "SOURCE_CODE"; position: absolute; top: 0; right: 20px; font-size: 0.6rem; color: var(--accent); font-weight: 900; }
+
+        .lang-content { display: none; }
         .lang-content.active { display: block; }
 
-        .mission-statement {
-            border-left: 5px solid var(--accent); padding: 40px;
-            background: #151515; margin: 40px 0; font-weight: 700; color: #fff;
+        @media (max-width: 600px) {
+            .article-container { padding: 40px 5%; }
+            code-block { padding: 15px; font-size: 0.8rem; }
         }
-
-        .footer-nav { margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--border); }
-        .back-btn { color: var(--accent); text-decoration: none; font-weight: 700; text-transform: uppercase; }
     </style>
 </head>
 <body>
-
     <header>
         <a href="index.html" class="logo">AYG<span>LABS</span></a>
-        <div class="lang-switch">
-            <button class="lang-btn active" onclick="setLang('en')">EN</button>
-            <span style="opacity:0.2">/</span>
-            <button class="lang-btn" onclick="setLang('tr')">TR</button>
+        <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+        <div class="nav-wrapper" id="nav-wrapper">
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="journal.html" class="active">Journal</a>
+                <a href="projects.html">Projects</a>
+                <a href="about.html">About</a>
+            </nav>
+            <div class="lang-switcher">
+                <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" id="btn-tr" onclick="setLang('tr')">TR</button>
+            </div>
         </div>
     </header>
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-    <article>
-        <span class="meta">January 29, 2026 // Entry #01</span>
+    <main class="article-container">
+        <span class="meta-data">LOG_ID: 001 // JAN 29, 2026</span>
         
         <div id="en-content" class="lang-content active">
-            <h1>Intellectual Evolution</h1>
-            <p>This is more than just a blog: it is a documentation of my intellectual evolution. For a long time, I have been walking around the informatics olympiads. For a long time, I have had a long-standing passion for computer science. Recently, I have started learning C and diving into complex algorithms.</p>
-            <div class="mission-statement">
-                My mission: Representing my country and achieving a gold medal at the International Olympiad in Informatics.
-            </div>
-            <p>I will be presenting my articles in this section of the journal. Stay tuned... The first documentation is loading...</p>
+            <h1>The Intellectual Evolution.</h1>
+            <p>Every great system begins with a single line of code. For Ayg Labs, this is that line. This project isn't just a portfolio; it's a documentation of my growth towards the IOI Gold Medal.</p>
+            <p>In the coming months, I will be deep-diving into C-based architectures and algorithm optimizations. Here is the foundation of my current research:</p>
+            
+            <code-block>
+#include <stdio.h>
+int main() {
+    printf("Evolution in progress...\n");
+    return 0;
+}
+            </code-block>
+
+            <p>Stay tuned for technical logs and competition updates.</p>
         </div>
 
         <div id="tr-content" class="lang-content">
-            <h1>Entelektüel Evrim</h1>
-            <p>Bu sadece bir blog değil; benim entelektüel evrimimin bir dokümantasyonudur. Uzun süredir bilişim olimpiyatları çevresindeyim ve bilgisayar bilimine karşı köklü bir tutkum var. Son zamanlarda C öğrenmeye ve karmaşık algoritmalara dalmaya başladım.</p>
-            <div class="mission-statement">
-                Misyonum: Ülkemi temsil etmek ve Uluslararası Bilişim Olimpiyatı'nda (IOI) altın madalya kazanmak.
-            </div>
-            <p>Makalelerimi günlüğün bu bölümünde sunacağım. Takipte kalın... İlk dokümantasyon yükleniyor...</p>
-        </div>
+            <h1>Entelektüel Evrim.</h1>
+            <p>Her büyük sistem tek bir satır kodla başlar. Ayg Labs için o satır, tam olarak bu. Bu proje sadece bir portfolyo değil; IOI Altın Madalyasına giden yoldaki gelişimimin dökümantasyonu.</p>
+            <p>Önümüzdeki aylarda C tabanlı mimarilere ve algoritma optimizasyonlarına derinlemesine dalış yapacağım. Mevcut araştırmamın temeli burada:</p>
 
-        <div class="footer-nav">
-            <a href="journal.html" class="back-btn">← Back to Journal</a>
+            <code-block>
+#include <stdio.h>
+int main() {
+    printf("Evrim devam ediyor...\n");
+    return 0;
+}
+            </code-block>
+
+            <p>Teknik kayıtlar ve yarışma güncellemeleri için takipte kalın.</p>
         </div>
-    </article>
+    </main>
 
     <script>
+        function toggleMenu() {
+            document.getElementById('nav-wrapper').classList.toggle('active');
+            document.querySelector('.menu-toggle').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+            document.body.style.overflow = document.getElementById('nav-wrapper').classList.contains('active') ? 'hidden' : 'auto';
+        }
+
         function setLang(lang) {
-            // Tüm içerikleri gizle
             document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
-            // Tüm butonları inaktif yap
-            document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
-            
-            // Seçilen içeriği ve butonu aktif et
             document.getElementById(lang + '-content').classList.add('active');
-            event.target.classList.add('active');
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
         }
     </script>
-
 </body>
 </html>
